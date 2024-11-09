@@ -1,0 +1,171 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px; /* Increased padding for better spacing */
+}
+
+/* Container styles */
+.container {
+    background-color: white;
+    border-radius: 12px;  /* Slightly more rounded corners */
+    padding: 30px;  /* More padding for comfortable spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 650px; /* Slightly increased max width */
+}
+
+/* Heading styles */
+h1 {
+    text-align: center;
+    margin-bottom: 30px; /* Increased space between heading and form */
+    color: #333;
+    font-size: 24px; /* Slightly larger font size for heading */
+}
+
+/* Input and Button styles */
+input[type="text"] {
+    width: 100%;  /* Full width for better alignment */
+    padding: 12px;
+    font-size: 18px;  /* Slightly larger text */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Space between input and button */
+    box-sizing: border-box;
+}
+
+button {
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%; /* Full-width button for better touch targets */
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #45a049;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;  /* Rounded corners for table */
+}
+
+th, td {
+    padding: 15px; /* More padding for a cleaner look */
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 18px; /* Larger text for headers */
+}
+
+td {
+    background-color: #fafafa;
+    color: #333;
+    font-size: 16px;
+}
+
+button.deleteBtn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+button.deleteBtn:hover {
+    background-color: #c0392b;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small screens (mobile) */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px; /* Adjusted font size for better mobile view */
+    }
+
+    input[type="text"], button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    button {
+        width: 100%;  /* Full width buttons for mobile devices */
+        margin-bottom: 15px;  /* Space between buttons */
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 12px;
+    }
+
+    button.deleteBtn {
+        width: 100%;  /* Delete button full width */
+    }
+}
+
+/* Medium screens (tablet) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .container {
+        padding: 25px;
+    }
+
+    input[type="text"], button {
+        font-size: 18px;
+        padding: 14px;
+    }
+
+    button {
+        width: 100%;  /* Full-width on tablet */
+    }
+
+    table {
+        font-size: 16px;
+    }
+
+    th, td {
+        padding: 14px;
+    }
+
+    button.deleteBtn {
+        width: auto;  /* Button adjusts back to fit content */
+    }
+}
