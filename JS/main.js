@@ -1,6 +1,6 @@
 // Function to fetch tasks from the API
 function fetchTasks() {
-    fetch('http://localhost:5069/api/List/AllTask')
+    fetch('http://todoliist.runasp.net/api/List/AllTask')
         .then(response => response.json()) // Parse the JSON from the response
         .then(data => {
             renderTasks(data); // Render tasks once data is fetched
@@ -44,7 +44,7 @@ addTaskBtn.addEventListener('click', () => {
         };
 
         // Send a POST request to the server to add the new task
-        fetch('http://localhost:5069/api/List/AddNewTask', {
+        fetch('http://todoliist.runasp.net/api/List/AddNewTask', {
             method: 'POST',
             headers: {
                 'accept': 'text/plain', // Adjusted header as per the cURL example
@@ -78,7 +78,7 @@ addTaskBtn.addEventListener('click', () => {
 // Function to delete a task (this will send a DELETE request to your API)
 // Function to delete a task (this will send a DELETE request to your API)
 function deleteTask(taskId) {
-    fetch(`http://localhost:5069/api/List/DeleteTask?id=${taskId}`, {
+    fetch(`http://todoliist.runasp.net/api/List/DeleteTask?id=${taskId}`, {
         method: 'DELETE',
     })
     .then(response => {
