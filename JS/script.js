@@ -41,3 +41,45 @@ document.querySelector(".sign-in form").addEventListener("submit", (event) => {
     alert("Please enter both username and password.");
   }
 });
+
+function signUpUser() {
+  // الحصول على القيم من المدخلات
+  const username = document.getElementById('sign-up-user').value;
+  const password = document.getElementById('sign-up-pass').value;
+  const confirmPassword = document.getElementById('sign-up-ConPass').value;
+
+  // التأكد من أن كلمة المرور و التأكيد متطابقين
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  // تحضير البيانات للإرسال
+  const userData = {
+    userID: 0,  // إذا كانت الـ API تحتاج إلى ID يمكن تركه 0 أو تخصيصه
+    userName: username,
+    password: password
+  };
+
+  // إرسال البيانات باستخدام fetch
+  fetch('https://todoliist.runasp.net/api/User/AddNewUser', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(userData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    // هنا يمكنك إضافة منطق للتعامل مع الاستجابة
+    console.log('User created successfully:', data);
+    alert("User created successfully!");
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert("An error occurred while creating the user.");
+  });
+}
+
+// استدعاء دالة signUpUser عند الضغط على زر التسجيل
+document.getElementById('Up').addEventListener('click', signUpUser);
