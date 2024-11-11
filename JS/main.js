@@ -1,5 +1,47 @@
 // Function to fetch tasks from the API
-v
+const userID = localStorage.getItem("userID");
+
+if (userID) {
+  // Function to fetch tasks from the API using the userID
+  function fetchTasks() {
+    fetch(`https://todoliist.runasp.net/api/List/AllTask?UserID=${userID}`)
+      .then((response) => response.json()) // Parse the JSON from the response
+      .then((data) => {
+        renderTasks(data); // Render tasks once data is fetched
+      })
+      .catch((error) => {
+        console.error("Error fetching tasks:", error);
+      });
+  }
+
+  // Function to render tasks in the table
+  function renderTasks(tasks) {
+    const taskTable = document.getElementById("taskTable").querySelector("tbody");
+    taskTable.innerHTML = ""; // Clear the current tasks
+
+    tasks.forEach((task) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${task.task}</td>
+        <td>${task.status ? "Completed" : "Incomplete"}</td>
+        <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
+      `;
+
+      // Add event listener for the delete button
+      row.querySelector(".deleteBtn").addEventListener("click", () => {
+        deleteTask(task.id);
+      });
+
+      taskTable.appendChild(row);
+    });
+  }
+
+  // Initial fetch of tasks when the page loads
+  fetchTasks();
+} else {
+  // Redirect to login page if no userID is found
+  window.location.href = "login.html";
+}
 
 // Function to add a new task (this will send a POST request to your API)
 // Function to add a new task (this will send a POST request to your API)
