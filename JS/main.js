@@ -39,6 +39,7 @@ addTaskBtn.addEventListener('click', () => {
     if (taskText !== '') {
         const listDTO = {
             id: 0,  // Assuming id is auto-generated on the server
+            userID : 3,
             task: taskText,
             status: false // Assuming status is a boolean (false = Incomplete)
         };
