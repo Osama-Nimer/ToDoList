@@ -1,35 +1,5 @@
 // Function to fetch tasks from the API
-function fetchTasks() {
-    fetch('https://todoliist.runasp.net/api/List/AllTask?UserID=3')
-        .then(response => response.json()) // Parse the JSON from the response
-        .then(data => {
-            renderTasks(data); // Render tasks once data is fetched
-        })
-        .catch(error => {
-            console.error('Error fetching tasks:', error);
-        });
-}
-
-// Function to render tasks in the table
-function renderTasks(tasks) {
-    taskTable.innerHTML = ''; // Clear the current tasks
-
-    tasks.forEach((task) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${task.task}</td>
-            <td>${task.status ? 'Completed' : 'Incomplete'}</td>
-            <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
-        `;
-        
-        // Add event listener for the delete button
-        row.querySelector('.deleteBtn').addEventListener('click', () => {
-            deleteTask(task.id);
-        });
-
-        taskTable.appendChild(row);
-    });
-}
+v
 
 // Function to add a new task (this will send a POST request to your API)
 // Function to add a new task (this will send a POST request to your API)

@@ -28,7 +28,8 @@ document.querySelector(".sign-in form").addEventListener("submit", (event) => {
         return response.json();
       })
       .then((user) => {
-        // Successful login
+        // Successful login, store userID in localStorage
+        localStorage.setItem("userID", user.userID);
         console.log("Login successful:", user);
         window.location.href = "home_page.html"; // Redirect to home page
       })
