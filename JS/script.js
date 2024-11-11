@@ -20,7 +20,7 @@ document.querySelector(".sign-in form").addEventListener("submit", (event) => {
 
   if (username && password) {
     // Fetch the user from API
-    fetch(`https://localhost:7246/api/User/GetUser?UserName=${username}&Password=${password}`)
+    fetch(`https://todoliist.runasp.net/api/User/GetUser?UserName=${username}&Password=${password}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Invalid username or password");
