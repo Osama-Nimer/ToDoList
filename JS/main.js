@@ -15,7 +15,8 @@ if (userID) {
   }
 
   // Function to render tasks in the table
-  function renderTasks(tasks) {
+  // دالة لعرض المهام في الجدول
+function renderTasks(tasks) {
     const taskTable = document.getElementById("taskTable").querySelector("tbody");
     taskTable.innerHTML = "";  // Clear the current tasks
 
@@ -32,8 +33,9 @@ if (userID) {
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
             `;
 
+            // إضافة event listener لحذف المهمة
             row.querySelector(".deleteBtn").addEventListener("click", () => {
-                deleteTask(task.id);
+                deleteTask(task.id, row); // تمرير صف المهمة لحذفه مباشرة
             });
 
             taskTable.appendChild(row);
@@ -97,7 +99,8 @@ addTaskBtn.addEventListener('click', () => {
 // Function to delete a task (this will send a DELETE request to your API)
 // Function to delete a task (this will send a DELETE request to your API)
 // حذف مهمة
-function deleteTask(taskId) {
+// حذف مهمة
+function deleteTask(taskId, rowElement) {
     fetch(`https://todoliist.runasp.net/api/List/DeleteTask?id=${taskId}`, {
         method: 'DELETE',
     })
@@ -109,12 +112,15 @@ function deleteTask(taskId) {
     })
     .then(data => {
         console.log(data);  // طباعة الاستجابة بنجاح
+        // إزالة صف المهمة المحذوفة مباشرة من الجدول
+        rowElement.remove();  // حذف صف المهمة من DOM
         fetchTasks();  // إعادة تحميل المهام بعد الحذف
     })
     .catch(error => {
         console.error('Error deleting task:', error);
     });
 }
+
 
 
 
