@@ -1,6 +1,6 @@
 // Function to fetch tasks from the API
 function fetchTasks() {
-    fetch('https://todoliist.runasp.net/api/List/AllTask')
+    fetch('https://todoliist.runasp.net/api/List/AllTask?UserID=3')
         .then(response => response.json()) // Parse the JSON from the response
         .then(data => {
             renderTasks(data); // Render tasks once data is fetched
@@ -98,6 +98,7 @@ function deleteTask(taskId) {
         console.error('Error deleting task:', error);
     });
 }
+
 
 
 // Initial fetch of tasks when the page loads
