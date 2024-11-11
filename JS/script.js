@@ -45,7 +45,7 @@ document.querySelector(".sign-in form").addEventListener("submit", (event) => {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  // الكود هنا بعد تحميل الصفحة بالكامل
+  // Handle sign-up form submission
   document.getElementById("sign-up-form").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent form submission
 
@@ -88,9 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .then((data) => {
       console.log('User created successfully:', data);
-      alert('Sign Up successful!'); // Show success message
-      // Optionally, redirect the user to the login page or home page
-      window.location.href = 'login_page.html'; // Replace with your desired page
+      alert('Sign Up successful!');
+      window.location.href = 'login_page.html'; // Redirect to login page or another page
     })
     .catch((error) => {
       console.error('Error during sign up:', error);
