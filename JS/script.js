@@ -42,6 +42,10 @@ document.querySelector(".sign-in form").addEventListener("submit", (event) => {
   }
 });
 
+
+
+
+
 function signUpUser() {
   // الحصول على القيم من المدخلات
   const username = document.getElementById('sign-up-user').value;
@@ -56,7 +60,7 @@ function signUpUser() {
 
   // تحضير البيانات للإرسال
   const userData = {
-    userID: 0,  // إذا كانت الـ API تحتاج إلى ID يمكن تركه 0 أو تخصيصه
+    userID: 0,  // يمكن تخصيصه حسب الحاجة
     userName: username,
     password: password
   };
@@ -69,7 +73,12 @@ function signUpUser() {
     },
     body: JSON.stringify(userData)
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
   .then(data => {
     // هنا يمكنك إضافة منطق للتعامل مع الاستجابة
     console.log('User created successfully:', data);
