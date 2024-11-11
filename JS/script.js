@@ -75,25 +75,26 @@ function sign_up(event) {
 
   // إرسال طلب POST لإنشاء المستخدم
   fetch('https://todoliist.runasp.net/api/User/AddNewUser', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newUser)
-  })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error('Failed to sign up. Please try again.');
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log('User created successfully:', data);
-    alert('Sign Up successful!');
-    window.location.href = 'login_page.html'; // إعادة التوجيه إلى صفحة تسجيل الدخول أو صفحة أخرى
-  })
-  .catch((error) => {
-    console.error('Error during sign up:', error);
-    alert('Error: ' + error.message);
-  });
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(newUser)
+})
+.then((response) => {
+  console.log("Response Status: ", response.status);  // Log the status code
+  if (!response.ok) {
+    throw new Error('Failed to sign up. Please try again.');
+  }
+  return response.json();
+})
+.then((data) => {
+  console.log('User created successfully:', data);  // Log the data response
+  alert('Sign Up successful!');
+  window.location.href = 'login_page.html'; // Redirect to login page or another page
+})
+.catch((error) => {
+  console.error('Error during sign up:', error);
+  alert('Error: ' + error.message);
+});
 }
