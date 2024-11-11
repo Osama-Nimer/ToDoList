@@ -17,24 +17,30 @@ if (userID) {
   // Function to render tasks in the table
   function renderTasks(tasks) {
     const taskTable = document.getElementById("taskTable").querySelector("tbody");
-    taskTable.innerHTML = ""; // Clear the current tasks
+    taskTable.innerHTML = "";  // Clear the current tasks
 
-    tasks.forEach((task) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${task.task}</td>
-        <td>${task.status ? "Completed" : "Incomplete"}</td>
-        <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
-      `;
+    if (tasks.length === 0) {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td colspan="3">No tasks available. Add a new task!</td>`;
+        taskTable.appendChild(row);
+    } else {
+        tasks.forEach((task) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${task.task}</td>
+                <td>${task.status ? "Completed" : "Incomplete"}</td>
+                <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
+            `;
 
-      // Add event listener for the delete button
-      row.querySelector(".deleteBtn").addEventListener("click", () => {
-        deleteTask(task.id);
-      });
+            row.querySelector(".deleteBtn").addEventListener("click", () => {
+                deleteTask(task.id);
+            });
 
-      taskTable.appendChild(row);
-    });
-  }
+            taskTable.appendChild(row);
+        });
+    }
+}
+
 
   // Initial fetch of tasks when the page loads
   fetchTasks();
@@ -90,22 +96,20 @@ addTaskBtn.addEventListener('click', () => {
 
 // Function to delete a task (this will send a DELETE request to your API)
 // Function to delete a task (this will send a DELETE request to your API)
+// حذف مهمة
 function deleteTask(taskId) {
     fetch(`https://todoliist.runasp.net/api/List/DeleteTask?id=${taskId}`, {
         method: 'DELETE',
     })
     .then(response => {
-        // Check if the response is successful (status code 200)
         if (!response.ok) {
             throw new Error('Failed to delete task');
         }
-        
-        // Check if the response is plain text (for success message)
-        return response.text(); // Read response as text instead of JSON
+        return response.text();
     })
     .then(data => {
-        console.log(data); // Log the response text (e.g., "Task with id X deleted successfully")
-        fetchTasks(); // Re-fetch the tasks after deleting one
+        console.log(data);  // طباعة الاستجابة بنجاح
+        fetchTasks();  // إعادة تحميل المهام بعد الحذف
     })
     .catch(error => {
         console.error('Error deleting task:', error);
