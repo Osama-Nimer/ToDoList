@@ -98,6 +98,16 @@ button.deleteBtn {
     cursor: pointer;
     transition: background-color 0.3s ease; /* Smooth hover transition */
 }
+button.doneBtn {
+    background-color: #3fe73c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    width: auto;
+}
 
 button.deleteBtn:hover {
     background-color: #c0392b;
