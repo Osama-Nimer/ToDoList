@@ -32,6 +32,8 @@ if (userID) {
                 <td>${task.status ? "Completed" : "Incomplete"}</td>
                 <td>
                     <button class="doneBtn" data-id="${task.id}" ${task.status ? "disabled" : ""}>Done</button>
+                </td>
+                <td>
                     <button class="deleteBtn" data-id="${task.id}">Delete</button>
                 </td>
             `;
