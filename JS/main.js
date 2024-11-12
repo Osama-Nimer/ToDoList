@@ -73,6 +73,7 @@ async function updateTaskStatus(taskId, row) {
             // Update the row to show task as completed
             row.querySelector("td:nth-child(2)").textContent = "Completed";
             row.querySelector(".doneBtn").disabled = true;
+            document.getElementById('task-th').style.backgroundColor="Green";
         } else {
             console.error("Failed to update task status:", response.statusText);
         }
