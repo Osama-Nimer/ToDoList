@@ -13,36 +13,35 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 20px; /* Increased padding for better spacing */
+    padding: 20px;
 }
 
 /* Container styles */
 .container {
     background-color: white;
-    border-radius: 12px;  /* Slightly more rounded corners */
-    padding: 30px;  /* More padding for comfortable spacing */
+    border-radius: 12px;
+    padding: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 650px; /* Slightly increased max width */
+    max-width: 650px;
 }
 
 /* Heading styles */
 h1 {
     text-align: center;
-    margin-bottom: 30px; /* Increased space between heading and form */
+    margin-bottom: 30px;
     color: #333;
-    font-size: 24px; /* Slightly larger font size for heading */
+    font-size: 24px;
 }
 
 /* Input and Button styles */
 input[type="text"] {
-    width: 100%;  /* Full width for better alignment */
+    width: 100%;
     padding: 12px;
-    font-size: 18px;  /* Slightly larger text */
+    font-size: 18px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    margin-bottom: 15px; /* Space between input and button */
-    box-sizing: border-box;
+    margin-bottom: 15px;
 }
 
 button {
@@ -53,13 +52,12 @@ button {
     color: white;
     border-radius: 8px;
     cursor: pointer;
-    width: 100%; /* Full-width button for better touch targets */
-    box-sizing: border-box;
+    width: 100%;
 }
 
 button:hover {
     background-color: #45a049;
-    transition: background-color 0.3s ease; /* Smooth hover transition */
+    transition: background-color 0.3s ease;
 }
 
 /* Table styles */
@@ -67,12 +65,10 @@ table {
     width: 100%;
     margin-top: 30px;
     border-collapse: collapse;
-    border-radius: 8px;
-    overflow: hidden;  /* Rounded corners for table */
 }
 
 th, td {
-    padding: 15px; /* More padding for a cleaner look */
+    padding: 15px;
     text-align: left;
     border: 1px solid #ddd;
 }
@@ -80,7 +76,7 @@ th, td {
 th {
     background-color: #f2f2f2;
     color: #333;
-    font-size: 18px; /* Larger text for headers */
+    font-size: 18px;
 }
 
 td {
@@ -89,23 +85,21 @@ td {
     font-size: 16px;
 }
 
+/* Action buttons */
 button.deleteBtn {
     background-color: #e74c3c;
     color: white;
-    border: none;
     padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth hover transition */
+    transition: background-color 0.3s ease;
 }
 button.doneBtn {
     background-color: #3fe73c;
     color: white;
-    border: none;
     padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth hover transition */
     width: auto;
 }
 
@@ -113,7 +107,7 @@ button.deleteBtn:hover {
     background-color: #c0392b;
 }
 
-/* Media Queries for Responsiveness */
+/* Responsive Styles */
 
 /* Small screens (mobile) */
 @media (max-width: 600px) {
@@ -126,7 +120,7 @@ button.deleteBtn:hover {
     }
 
     h1 {
-        font-size: 22px; /* Adjusted font size for better mobile view */
+        font-size: 22px;
     }
 
     input[type="text"], button {
@@ -135,20 +129,37 @@ button.deleteBtn:hover {
     }
 
     button {
-        width: 100%;  /* Full width buttons for mobile devices */
-        margin-bottom: 15px;  /* Space between buttons */
+        width: 100%;
+        margin-bottom: 15px;
     }
 
-    table {
-        font-size: 14px;
+    /* Responsive table styles */
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
     }
 
-    th, td {
-        padding: 12px;
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-size: 16px;
     }
 
-    button.deleteBtn {
-        width: 100%;  /* Delete button full width */
+    td {
+        position: relative;
+        padding-left: 50%;
+        font-size: 16px;
+    }
+
+    td:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 45%;
+        padding-left: 15px;
+        font-weight: bold;
+        color: #666;
+        content: attr(data-label); /* Labels added for accessibility */
     }
 }
 
@@ -164,7 +175,7 @@ button.deleteBtn:hover {
     }
 
     button {
-        width: 100%;  /* Full-width on tablet */
+        width: 100%;
     }
 
     table {
@@ -173,9 +184,5 @@ button.deleteBtn:hover {
 
     th, td {
         padding: 14px;
-    }
-
-    button.deleteBtn {
-        width: auto;  /* Button adjusts back to fit content */
     }
 }
