@@ -16,7 +16,7 @@ if (userID) {
 
   // Function to render tasks in the table
   // دالة لعرض المهام في الجدول
-function renderTasks(tasks) {
+  function renderTasks(tasks) {
     const taskTable = document.getElementById("taskTable").querySelector("tbody");
     taskTable.innerHTML = "";  // Clear the current tasks
 
@@ -30,18 +30,62 @@ function renderTasks(tasks) {
             row.innerHTML = `
                 <td>${task.task}</td>
                 <td>${task.status ? "Completed" : "Incomplete"}</td>
-                <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
+                <td>
+                    <button class="doneBtn" data-id="${task.id}" ${task.status ? "disabled" : ""}>Done</button>
+                    <button class="deleteBtn" data-id="${task.id}">Delete</button>
+                </td>
             `;
 
-            // إضافة event listener لحذف المهمة
+            // Event listener for marking the task as done
+            row.querySelector(".doneBtn").addEventListener("click", () => {
+                updateTaskStatus(task.id, row);
+            });
+
+            // Event listener for deleting the task
             row.querySelector(".deleteBtn").addEventListener("click", () => {
-                deleteTask(task.id, row); // تمرير صف المهمة لحذفه مباشرة
+                deleteTask(task.id, row);
             });
 
             taskTable.appendChild(row);
         });
     }
 }
+
+// Function to update task status
+async function updateTaskStatus(taskId, row) {
+    try {
+        const response = await fetch(`https://localhost:7246/api/List/UpdateTask?id=${taskId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: taskId,
+                userID: 0,  // Set appropriate userID here
+                task: row.querySelector("td:first-child").textContent,
+                status: true
+            }),
+        });
+
+        if (response.ok) {
+            // Update the row to show task as completed
+            row.querySelector("td:nth-child(2)").textContent = "Completed";
+            row.querySelector(".doneBtn").disabled = true;
+        } else {
+            console.error("Failed to update task status:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error updating task status:", error);
+    }
+}
+
+// Dummy function to delete the task
+// function deleteTask(taskId, row) {
+//     // Implement task deletion logic here
+//     console.log(`Delete task with ID ${taskId}`);
+//     row.remove();  // Remove the row from the table as an example
+// }
+
 
 
   // Initial fetch of tasks when the page loads
